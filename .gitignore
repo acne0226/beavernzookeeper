@@ -1,0 +1,22 @@
+# Secrets & credentials
+.env
+google_token.json
+
+# Source (staged separately)
+src/
+main.py
+
+# Tests
+tests/
+test_*.py
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Misc
+=3.10.4
