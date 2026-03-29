@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      font-family: 'Pretendard', sans-serif;
+      background: #0F1419;
+      padding: 40pt 48pt;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28pt;">
+    <div style="display: flex; align-items: center; gap: 12pt;">
+      <p style="display: inline-block; padding: 4pt 10pt; background: #3ECFB4; color: #0F1419; border-radius: 4pt; font-size: 8pt; font-weight: 700;">PROBLEM</p>
+      <h2 style="font-size: 22pt; font-weight: 600; color: #F0F4F8;">심사역의 매일 반복되는 고통</h2>
+    </div>
+    <p style="font-size: 10pt; color: #556677;">02</p>
+  </div>
+
+  <!-- 수치 카드 -->
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16pt; margin-bottom: 24pt;">
+    <div style="background: #1A2332; border-radius: 10pt; padding: 20pt; text-align: center;">
+      <p style="font-size: 36pt; font-weight: 700; color: #3ECFB4; letter-spacing: -0.02em;">5~8</p>
+      <p style="font-size: 10pt; color: #8899AA; margin-top: 6pt;">외부 미팅 / 일</p>
+    </div>
+    <div style="background: #1A2332; border-radius: 10pt; padding: 20pt; text-align: center;">
+      <p style="font-size: 36pt; font-weight: 700; color: #3ECFB4; letter-spacing: -0.02em;">30~50</p>
+      <p style="font-size: 10pt; color: #8899AA; margin-top: 6pt;">메일 / 일</p>
+    </div>
+    <div style="background: #1A2332; border-radius: 10pt; padding: 20pt; text-align: center;">
+      <p style="font-size: 36pt; font-weight: 700; color: #3ECFB4; letter-spacing: -0.02em;">100+</p>
+      <p style="font-size: 10pt; color: #8899AA; margin-top: 6pt;">Notion 딜 레코드</p>
+    </div>
+  </div>
+
+  <!-- 핵심 메시지 -->
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+    <p style="font-size: 14pt; color: #F0F4F8; line-height: 1.7; font-weight: 400;">
+      정답지를 만들려면 <span style="color: #3ECFB4; font-weight: 600;">엣지 케이스를 일일이 핸드패킹</span>해야 합니다.
+    </p>
+    <p style="font-size: 13pt; color: #8899AA; line-height: 1.7; margin-top: 8pt;">
+      AI 심사역 하나로는 판단 신뢰도가 부족 — 놓친 데드라인은 곧 신뢰 손실
+    </p>
+  </div>
+
+  <!-- 푸터 -->
+  <div style="display: flex; justify-content: flex-end; padding-top: 12pt;">
+    <p style="font-size: 9pt; color: #556677;">Source: 실제 VC 심사역 업무 데이터</p>
+  </div>
+</body>
+</html>

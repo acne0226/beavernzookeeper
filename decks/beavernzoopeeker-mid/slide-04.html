@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      font-family: 'Pretendard', sans-serif;
+      background: #0F1419;
+      padding: 40pt 48pt;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24pt;">
+    <div style="display: flex; align-items: center; gap: 12pt;">
+      <p style="display: inline-block; padding: 4pt 10pt; background: #3ECFB4; color: #0F1419; border-radius: 4pt; font-size: 8pt; font-weight: 700;">RALPH</p>
+      <h2 style="font-size: 22pt; font-weight: 600; color: #F0F4F8;">나의 랄프 세팅</h2>
+    </div>
+    <p style="font-size: 10pt; color: #556677;">04</p>
+  </div>
+
+  <!-- 메인 콘텐츠: 2단 -->
+  <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 24pt;">
+
+    <!-- 왼쪽: Builder-Breaker -->
+    <div>
+      <h3 style="font-size: 14pt; font-weight: 600; color: #3ECFB4; margin-bottom: 12pt;">Builder-Breaker 검증 루프</h3>
+      <p style="font-size: 11pt; color: #8899AA; line-height: 1.7; margin-bottom: 16pt;">
+        AI 두 개가 <span style="color: #F0F4F8; font-weight: 500;">경찰과 도둑</span>처럼 대립.<br>
+        Builder가 구현하면 Breaker가 엣지 케이스로 공격.<br>
+        무승부가 나올 때까지 반복합니다.
+      </p>
+
+      <div style="background: #1A2332; border-radius: 8pt; padding: 14pt;">
+        <p style="font-size: 9pt; color: #556677; margin-bottom: 8pt;">SAFETY GUARDS</p>
+        <ul style="list-style: none; padding: 0;">
+          <li style="font-size: 10pt; color: #F0F4F8; margin-bottom: 5pt; padding-left: 12pt; position: relative;">
+            <span style="position: absolute; left: 0; color: #3ECFB4;">+</span>
+            최대 20사이클 제한
+          </li>
+          <li style="font-size: 10pt; color: #F0F4F8; margin-bottom: 5pt; padding-left: 12pt; position: relative;">
+            <span style="position: absolute; left: 0; color: #3ECFB4;">+</span>
+            진동 감지 (동일 에러 3회 반복 시 자동 종료)
+          </li>
+          <li style="font-size: 10pt; color: #F0F4F8; padding-left: 12pt; position: relative;">
+            <span style="position: absolute; left: 0; color: #3ECFB4;">+</span>
+            에러 심각도 분류 (critical vs minor)
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 오른쪽: 도구 + 전략 -->
+    <div>
+      <h3 style="font-size: 14pt; font-weight: 600; color: #3ECFB4; margin-bottom: 12pt;">도구 & 운영 전략</h3>
+
+      <div style="background: #1A2332; border-radius: 8pt; padding: 14pt; margin-bottom: 12pt;">
+        <p style="font-size: 9pt; color: #556677; margin-bottom: 8pt;">AI STACK</p>
+        <p style="font-size: 11pt; color: #F0F4F8; line-height: 1.6;">
+          Claude Code + Ouroboros<br>
+          <span style="color: #8899AA; font-size: 10pt;">Seed v2 기반 Specification-first 워크플로우</span>
+        </p>
+      </div>
+
+      <div style="background: #1A2332; border-radius: 8pt; padding: 14pt; margin-bottom: 12pt;">
+        <p style="font-size: 9pt; color: #556677; margin-bottom: 8pt;">MEMORY GUARD</p>
+        <p style="font-size: 11pt; color: #F0F4F8; line-height: 1.6;">
+          고아 프로세스 자동 정리<br>
+          <span style="color: #8899AA; font-size: 10pt;">8GB 메모리 한도 모니터링, 30초 주기</span>
+        </p>
+      </div>
+
+      <div style="background: #1A2332; border-radius: 8pt; padding: 14pt;">
+        <p style="font-size: 9pt; color: #556677; margin-bottom: 8pt;">STRATEGY</p>
+        <p style="font-size: 11pt; color: #F0F4F8; line-height: 1.6;">
+          코드 전에 Seed로 요구사항 정의<br>
+          <span style="color: #8899AA; font-size: 10pt;">정확성 1.0 / 데드라인 무결 1.0 품질 기준</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

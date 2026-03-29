@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 720pt;
+      height: 405pt;
+      font-family: 'Pretendard', sans-serif;
+      background: #0F1419;
+      padding: 40pt 48pt;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28pt;">
+    <div style="display: flex; align-items: center; gap: 12pt;">
+      <p style="display: inline-block; padding: 4pt 10pt; background: #3ECFB4; color: #0F1419; border-radius: 4pt; font-size: 8pt; font-weight: 700;">STATUS</p>
+      <h2 style="font-size: 22pt; font-weight: 600; color: #F0F4F8;">현재 진행 상황</h2>
+    </div>
+    <p style="font-size: 10pt; color: #556677;">05</p>
+  </div>
+
+  <!-- 3개 기능 카드 -->
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16pt; margin-bottom: 24pt;">
+    <div style="background: #1A2332; border-radius: 10pt; padding: 20pt; border-left: 3pt solid #3ECFB4;">
+      <p style="font-size: 9pt; color: #3ECFB4; font-weight: 600; margin-bottom: 8pt;">FEATURE 1</p>
+      <h3 style="font-size: 13pt; font-weight: 600; color: #F0F4F8; margin-bottom: 8pt;">미팅 브리핑</h3>
+      <p style="font-size: 10pt; color: #8899AA; line-height: 1.6;">
+        매일 09:30 전체 브리핑<br>
+        외부 미팅 15분 전 개별 브리핑<br>
+        /brief 온디맨드
+      </p>
+      <p style="font-size: 10pt; font-weight: 600; color: #3ECFB4; margin-top: 10pt;">DONE</p>
+    </div>
+
+    <div style="background: #1A2332; border-radius: 10pt; padding: 20pt; border-left: 3pt solid #3ECFB4;">
+      <p style="font-size: 9pt; color: #3ECFB4; font-weight: 600; margin-bottom: 8pt;">FEATURE 2</p>
+      <h3 style="font-size: 13pt; font-weight: 600; color: #F0F4F8; margin-bottom: 8pt;">메일 관리</h3>
+      <p style="font-size: 10pt; color: #8899AA; line-height: 1.6;">
+        5분 주기 포트폴리오 메일 스캔<br>
+        데드라인 / 오버듀 / 미회신 알림<br>
+        /mail 온디맨드
+      </p>
+      <p style="font-size: 10pt; font-weight: 600; color: #3ECFB4; margin-top: 10pt;">DONE</p>
+    </div>
+
+    <div style="background: #1A2332; border-radius: 10pt; padding: 20pt; border-left: 3pt solid #3ECFB4;">
+      <p style="font-size: 9pt; color: #3ECFB4; font-weight: 600; margin-bottom: 8pt;">FEATURE 3</p>
+      <h3 style="font-size: 13pt; font-weight: 600; color: #F0F4F8; margin-bottom: 8pt;">자연어 Q&A</h3>
+      <p style="font-size: 10pt; color: #8899AA; line-height: 1.6;">
+        Calendar + Gmail + Notion + Slack<br>
+        통합 질의응답, 15초 이내 응답<br>
+        /ask 온디맨드
+      </p>
+      <p style="font-size: 10pt; font-weight: 600; color: #3ECFB4; margin-top: 10pt;">DONE</p>
+    </div>
+  </div>
+
+  <!-- 하단 요약 -->
+  <div style="flex: 1; display: flex; align-items: center; justify-content: space-between; background: #1A2332; border-radius: 10pt; padding: 16pt 24pt;">
+    <div style="display: flex; align-items: center; gap: 24pt;">
+      <div>
+        <p style="font-size: 28pt; font-weight: 700; color: #3ECFB4;">36</p>
+        <p style="font-size: 9pt; color: #8899AA;">테스트 모듈</p>
+      </div>
+      <div style="width: 1pt; height: 32pt; background: #2A3A4A;"></div>
+      <div>
+        <p style="font-size: 28pt; font-weight: 700; color: #3ECFB4;">6</p>
+        <p style="font-size: 9pt; color: #8899AA;">모듈 분리</p>
+      </div>
+      <div style="width: 1pt; height: 32pt; background: #2A3A4A;"></div>
+      <div>
+        <p style="font-size: 28pt; font-weight: 700; color: #3ECFB4;">4</p>
+        <p style="font-size: 9pt; color: #8899AA;">API 연동</p>
+      </div>
+    </div>
+    <p style="font-size: 11pt; color: #8899AA; text-align: right; line-height: 1.6;">
+      에러 복원력 + Graceful Degradation<br>
+      <span style="font-size: 10pt; color: #556677;">확인 불가 표기로 정확성 우선</span>
+    </p>
+  </div>
+</body>
+</html>

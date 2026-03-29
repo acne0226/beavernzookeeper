@@ -28,8 +28,6 @@ node_modules/
 # Ouroboros seeds (project-specific specs)
 seed_*.yaml
 
-# Decks (presentation files)
-decks/
 
 # Skills lock
 skills-lock.json
