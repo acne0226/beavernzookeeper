@@ -15,6 +15,10 @@ notion-client>=2.2.1
 # Anthropic Claude
 anthropic>=0.23.0
 
+# Web Search (for EXTERNAL_FIRST meeting briefings, Sub-AC 6a)
+# Tavily is the primary provider; Claude web_search is the built-in fallback.
+tavily-python>=0.3.0
+
 # Utilities
 python-dotenv>=1.0.0
 requests>=2.31.0

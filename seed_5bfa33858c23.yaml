@@ -1,0 +1,183 @@
+goal: Build a personal work assistant (Python daemon) that integrates Slack, Google
+  Calendar, Notion, and Gmail APIs to provide automated meeting briefings, portfolio
+  company deadline mail management, and natural language Q&A over work data, delivering
+  all outputs via Slack Bot DM.
+task_type: code
+brownfield_context:
+  project_type: greenfield
+  context_references: []
+  existing_patterns: []
+  existing_dependencies: []
+constraints:
+- Python with APScheduler for scheduling and Slack Socket Mode for real-time slash
+  commands
+- AI powered by Claude API (Anthropic) with built-in web_search tool for external
+  search
+- API keys loaded from .env file in project root
+- Google OAuth2 credentials persisted to JSON files at setup to avoid repeated login
+  prompts
+- Notion DB schema discovered dynamically via API at startup, not hardcoded
+- Local daemon process (single long-running Python process), deployment environment
+  TBD
+- Feature 1 must be fully verified (builder+breaker + real usage confirmation) before
+  Feature 2 development begins
+- Feature 3 developed only after Features 1+2 are complete
+- Incorrect information must never be sent; incomplete but accurate info is acceptable
+  with '확인 불가' annotation
+- API call failures retry 3 times at 10-second intervals then report failure via Slack
+  DM
+- 'Data scale: 5-8 meetings/day, 30-50 emails/day, 50-100 Notion deal DB records'
+- Investment team members identified by fixed email list (11 members at kakaoventures.co.kr)
+  stored in config
+- Calendar history lookback period is 1 year for external meeting classification
+- Response time for natural language Q&A must be within 15 seconds
+- Slack priority channel search targets channels containing "투자" or "squad-service"
+  in name
+acceptance_criteria:
+- Daily full-schedule briefing sent via Slack DM at 09:30 every morning
+- Per-meeting prep briefing sent via Slack DM 15 minutes before each external meeting
+- /brief slash command triggers on-demand briefing
+- Calendar events auto-classified as internal (skip), external_first, or external_followup
+  based on title parsing and 1-year calendar history
+- Internal meetings and events titled "block" are skipped from briefing
+- external_first briefing includes web search + Notion deal memo + Slack conversations
+  (investment keyword channels and team DMs prioritized) + Gmail exchange history
+- external_followup briefing includes Notion page + Gmail exchange + related Slack
+  history for that company
+- Incomplete briefings (missing attendees or meeting purpose) are never sent
+- Portfolio company emails auto-identified by matching Notion startup DB company names
+  against mail sender names with web search fallback for legal vs brand name mismatches
+- Matched company name mappings are cached persistently for reuse
+- Mail deadlines extracted from body; default to received_date + 3 days if not specified
+- Deadline approaching alert sent via Slack DM 1 day before due date
+- Overdue alert sent immediately via Slack DM when deadline passes
+- Missed reply detection runs daily at 09:00 with Slack DM notification
+- /mail slash command triggers on-demand mail status check
+- Zero missed deadline emails allowed
+- Natural language Q&A answers questions by combining Calendar, Gmail, Notion, and
+  Slack data without web search
+- Automated task/follow-up suggestions sent at 09:00, 12:00, and 18:00 daily
+- /ask slash command triggers immediate natural language query
+- 'Builder-Breaker verification loop: builder implements ACs in parallel, breaker
+  tests with edge cases, API failures, and data gaps'
+- Breaker performs regression tests on previously fixed items
+- Workflow terminates when builder declares "구현 완료" and breaker declares "검증 통과" simultaneously,
+  followed by full end-to-end verification of all ACs
+ontology_schema:
+  name: WorkAssistantDomain
+  description: Domain model for a personal work assistant that manages meeting briefings,
+    portfolio mail deadlines, and natural language Q&A across integrated work tools
+  fields:
+  - name: calendar_event
+    type: object
+    description: Google Calendar event with title, attendees, time, and auto-classified
+      type (internal/external_first/external_followup/block)
+    required: true
+  - name: meeting_briefing
+    type: object
+    description: Generated briefing containing attendee info, meeting purpose, key
+      agenda, prepared questions, and source references
+    required: true
+  - name: portfolio_company
+    type: object
+    description: Company from Notion startup DB with company name, deal memo, page
+      ID, and matched email aliases
+    required: true
+  - name: deadline_mail
+    type: object
+    description: Email from portfolio company with extracted or default deadline,
+      reply status, and alert state
+    required: true
+  - name: company_name_mapping
+    type: object
+    description: Cached mapping between legal entity names and brand names resolved
+      via web search
+    required: true
+  - name: slack_message
+    type: object
+    description: Slack message with channel, sender, timestamp, and content used for
+      context gathering
+    required: true
+  - name: email_thread
+    type: object
+    description: Gmail thread with participants, subject, body, dates, and reply chain
+    required: true
+  - name: notion_deal
+    type: object
+    description: Notion DB record with company name and deal-related fields dynamically
+      discovered via API
+    required: true
+  - name: scheduled_task
+    type: object
+    description: APScheduler job definition with trigger time, task type, and execution
+      parameters
+    required: true
+  - name: briefing_type
+    type: string
+    description: Classification enum of calendar event - internal, external_first,
+      external_followup, or block
+    required: true
+  - name: investment_team_member
+    type: object
+    description: Team member identified by email address from fixed config list (11
+      kakaoventures.co.kr emails)
+    required: true
+  - name: qa_query
+    type: object
+    description: Natural language question with parsed intent, relevant data sources,
+      and synthesized answer
+    required: true
+evaluation_principles:
+- name: accuracy
+  description: Information delivered must be factually correct based on source data;
+    no hallucinated or unverified information allowed
+  weight: 1.0
+- name: completeness
+  description: Briefings and answers should cover all available relevant data sources;
+    missing sources marked as 확인 불가
+  weight: 0.8
+- name: timeliness
+  description: All scheduled notifications delivered at exact specified times; Q&A
+    responses within 15 seconds
+  weight: 0.9
+- name: zero_missed_deadlines
+  description: Portfolio company deadline emails must have 0 missed items
+  weight: 1.0
+- name: reliability
+  description: API failures handled with 3x retry at 10s intervals and graceful degradation
+    with failure reporting
+  weight: 0.9
+- name: sequential_feature_delivery
+  description: Features developed and verified in strict order (1→2→3) with builder-breaker
+    verification
+  weight: 0.7
+- name: data_safety
+  description: No incorrect information transmitted; incomplete but accurate data
+    preferred over complete but uncertain data
+  weight: 1.0
+exit_conditions:
+- name: builder_complete
+  description: Builder agent declares all acceptance criteria implemented
+  criteria: All ACs have corresponding code implementation with no remaining TODOs
+- name: breaker_verified
+  description: Breaker agent declares verification passed after finding no remaining
+    errors
+  criteria: All edge cases, API failure scenarios, data gaps tested with zero failures
+    and regression tests passing
+- name: simultaneous_declaration
+  description: Both builder and breaker declare completion simultaneously (무승부)
+  criteria: Builder declares 구현 완료 AND breaker declares 검증 통과 in same cycle
+- name: full_verification
+  description: Final end-to-end verification of all features from scratch after simultaneous
+    declaration
+  criteria: Every single AC passes in sequential full-run test
+- name: user_notification
+  description: Completion alert sent to user after full verification passes
+  criteria: Slack DM sent confirming all features verified and operational
+metadata:
+  seed_id: seed_5bfa33858c23
+  version: 1.0.0
+  created_at: '2026-03-29T02:20:41.384289Z'
+  ambiguity_score: 0.113
+  interview_id: interview_20260329_020310
+  parent_seed_id: null
