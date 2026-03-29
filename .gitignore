@@ -1,22 +1,35 @@
 # Secrets & credentials
 .env
 google_token.json
+gmail_token.json
+google_credentials.json
 
-# Source (staged separately)
-src/
-main.py
-
-# Tests
-tests/
-test_*.py
+# Personal data cache
+calendar_history_cache.json
 
 # Python
 __pycache__/
 *.pyc
 .pytest_cache/
+.venv/
+
+# Node
+node_modules/
+
+# Claude Code local config
+.claude/
 
 # macOS
 .DS_Store
 
 # Misc
 =3.10.4
+
+# Ouroboros seeds (project-specific specs)
+seed_*.yaml
+
+# Decks (presentation files)
+decks/
+
+# Skills lock
+skills-lock.json
